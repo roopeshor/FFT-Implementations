@@ -10,7 +10,10 @@
  * @param X_re pointer to output real part
  * @param X_im pointer to outpuj ima2inaby part
  */
-void dft_CT(float* x_re, float* x_im, size_t N1, size_t N2, float* X_re, float* X_im) {
+void dft_CT(
+    float* x_re, float* x_im, const size_t N1, const size_t N2, float* X_re,
+    float* X_im
+) {
   /**
    * N = N1*N2
    * X[k] = FFT{x(n)}
@@ -21,10 +24,6 @@ void dft_CT(float* x_re, float* x_im, size_t N1, size_t N2, float* X_re, float* 
    *
    */
 
-  float col_re[N2];
-  float col_im[N2];
-  float row_re[N1];
-  float row_im[N1];
   float colDFT_re[N2 * N1];
   float colDFT_im[N2 * N1];
   float rowDFT_re[N1 * N2];
@@ -38,7 +37,15 @@ void dft_CT(float* x_re, float* x_im, size_t N1, size_t N2, float* X_re, float* 
     //   col_re[i] = x_re[N1 * i + j];
     //   col_im[i] = x_im[N1 * i + j];
     // }
-    dft_in_reindex(x_re, x_im, N2, colDFT_re + j * N2, colDFT_im + j * N2, N1, j);
+    dft_input_reindexed(
+        x_re,
+        x_im,
+        N2,
+        colDFT_re + j * N2,
+        colDFT_im + j * N2,
+        N1,
+        j
+    );
   }
   // mul by twiddle:
   // WN^(bj)
@@ -46,8 +53,12 @@ void dft_CT(float* x_re, float* x_im, size_t N1, size_t N2, float* X_re, float* 
   for (size_t j = 0; j < N1; j++) {
     for (size_t b = 0; b < N2; b++) {
       bj = j * N2 + b;
-      complexMulSelf(colDFT_re + bj, colDFT_im + bj, WNk_re(b * j, N1 * N2),
-                     WNk_im(b * j, N1 * N2));
+      complexMulSelf(
+          colDFT_re + bj,
+          colDFT_im + bj,
+          WNk_re(b * j, N1 * N2),
+          WNk_im(b * j, N1 * N2)
+      );
     }
   }
 
@@ -59,7 +70,15 @@ void dft_CT(float* x_re, float* x_im, size_t N1, size_t N2, float* X_re, float* 
     //   row_re[j] = colDFT_re[N2 * j + i];
     //   row_im[j] = colDFT_im[N2 * j + i];
     // }
-    dft_in_reindex(colDFT_re, colDFT_im, N1, rowDFT_re + i * N1, rowDFT_im + i * N1, N2, i);
+    dft_input_reindexed(
+        colDFT_re,
+        colDFT_im,
+        N1,
+        rowDFT_re + i * N1,
+        rowDFT_im + i * N1,
+        N2,
+        i
+    );
   }
 
   /**

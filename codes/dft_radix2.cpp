@@ -32,27 +32,40 @@ void dft_radix2(float* _x_re, float* _x_im, size_t N, float* xr, float* xi) {
   // stage: 2pt, 4pt, 8pt dft
   for (uint8_t stage = 0; stage < bits; stage++) {
     // group -> group of butterfly
-    // std::cout << "stage: " << stage << "\n";
-    for (uint8_t groupStartIndex = 0; groupStartIndex < N; groupStartIndex += groupSize) {
+    for (uint8_t startIndex = 0; startIndex < N; startIndex += groupSize) {
       for (int j = 0; j < groupOperations; j++) {
-        idxTop = groupStartIndex + j;
+        idxTop = startIndex + j;
         idxBottom = idxTop + groupOperations;
-        // std::cout << "operating pair: " << idxTop << " - " << idxBottom << "\n";
 
         wr = std::cos(2 * PI * j / ((float)groupSize));
         wi = -std::sin(2 * PI * j / ((float)groupSize));
-        complexMulAdd(xr[idxTop], xi[idxTop], wr, wi, xr[idxBottom], xi[idxBottom], &xra,
-                      &xia);
-        complexMulAdd(xr[idxTop], xi[idxTop], -wr, -wi, xr[idxBottom], xi[idxBottom],
-                      &xrb, &xib);
+
+        complexMulAdd(
+            xr[idxTop],
+            xi[idxTop],
+            wr,
+            wi,
+            xr[idxBottom],
+            xi[idxBottom],
+            &xra,
+            &xia
+        );
+        complexMulAdd(
+            xr[idxTop],
+            xi[idxTop],
+            -wr,
+            -wi,
+            xr[idxBottom],
+            xi[idxBottom],
+            &xrb,
+            &xib
+        );
         xr[idxTop] = xra;
         xi[idxTop] = xia;
         xr[idxBottom] = xrb;
         xi[idxBottom] = xib;
       }
     }
-    // std::cout << "\n";
-
     groupSize *= 2;
     groupOperations *= 2;
   }

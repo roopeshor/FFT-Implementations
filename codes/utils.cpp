@@ -63,14 +63,16 @@ void rearrange_bit_reverse(T* src, T* dest, size_t N, uint8_t exp) {
  * @param Dr real part of output written to this mem space
  * @param Di imag part of output written to this mem space
  */
-inline void complexMulAdd(float Ar, float Ai, float Br, float Bi, float Cr, float Ci,
-                          float* Dr, float* Di) {
+inline void complexMulAdd(
+    float Ar, float Ai, float Br, float Bi, float Cr, float Ci, float* Dr,
+    float* Di
+) {
   *Dr = Ar + Br * Cr - Bi * Ci;
   *Di = Ai + Br * Ci + Bi * Cr;
 }
 /**
- * Does multiplication of 2 numbers, adds another number and add result to another
- * variable:
+ * Does multiplication of 2 numbers, adds another number and add result to
+ * another variable:
  * ```txt
  *     D       += A + B * C
  *             += (Ar + j*Ai) + (Br + j*Bi)(Cr + j*Ci)
@@ -85,8 +87,10 @@ inline void complexMulAdd(float Ar, float Ai, float Br, float Bi, float Cr, floa
  * @param Dr real part of output written to this mem space
  * @param Di imag part of output written to this mem space
  */
-inline void complexMulAddAcc(float Ar, float Ai, float Br, float Bi, float Cr, float Ci,
-                             float* Dr, float* Di) {
+inline void complexMulAddAcc(
+    float Ar, float Ai, float Br, float Bi, float Cr, float Ci, float* Dr,
+    float* Di
+) {
   *Dr += Ar + Br * Cr - Bi * Ci;
   *Di += Ai + Br * Ci + Bi * Cr;
 }
@@ -104,7 +108,9 @@ inline void complexMulAddAcc(float Ar, float Ai, float Br, float Bi, float Cr, f
  * @param Cr real part of output written to this mem space
  * @param Ci imag part of output written to this mem space
  */
-inline void complexMulAcc(float Ar, float Ai, float Br, float Bi, float* Cr, float* Ci) {
+inline void complexMulAcc(
+    float Ar, float Ai, float Br, float Bi, float* Cr, float* Ci
+) {
   *Cr += Ar * Br - Ai * Bi;
   *Ci += Ar * Bi + Ai * Br;
 }

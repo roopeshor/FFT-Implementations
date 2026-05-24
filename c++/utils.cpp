@@ -50,9 +50,9 @@ void rearrange_bit_reverse(T* src, T* dest, size_t N, uint8_t exp) {
  * computes:
  *
  * ```txt
- *     D       = A + B * C
- *             = (Ar + j*Ai) + (Br + j*Bi)(Cr + j*Ci)
- * (Dr + j*Di) = (Ar + Br*Cr - Bi*Ci) + j(Ai + Br*Ci + Bi*Cr)
+ *    D      = A + B * C
+ *           = (Ar + j*Ai) + (Br + j*Bi)(Cr + j*Ci)
+ * Dr + j*Di = (Ar + Br*Cr - Bi*Ci) + j(Ai + Br*Ci + Bi*Cr)
  *  ```
  * @param Ar input real
  * @param Ai input imaginary
@@ -74,9 +74,9 @@ inline void complexMulAdd(
  * Does multiplication of 2 numbers, adds another number and add result to
  * another variable:
  * ```txt
- *     D       += A + B * C
- *             += (Ar + j*Ai) + (Br + j*Bi)(Cr + j*Ci)
- * (Dr + j*Di) += (Ar + Br*Cr - Bi*Ci) + j(Ai + Br*Ci + Bi*Cr)
+ *    D      += A + B * C
+ *           += (Ar + j*Ai) + (Br + j*Bi)(Cr + j*Ci)
+ * Dr + j*Di += (Ar + Br*Cr - Bi*Ci) + j(Ai + Br*Ci + Bi*Cr)
  * ```
  * @param Ar input real
  * @param Ai input imaginary
@@ -84,8 +84,8 @@ inline void complexMulAdd(
  * @param Bi input imaginary
  * @param Cr input real
  * @param Ci input imaginary
- * @param Dr real part of output written to this mem space
- * @param Di imag part of output written to this mem space
+ * @param Dr real part of output. Output written to this mem space
+ * @param Di imag part of output. Output written to this mem space
  */
 inline void complexMulAddAcc(
     float Ar, float Ai, float Br, float Bi, float Cr, float Ci, float* Dr,

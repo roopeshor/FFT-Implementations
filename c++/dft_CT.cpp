@@ -7,8 +7,8 @@
  * @param xi pointer to input array of imaginary part
  * @param N1 size factor 1
  * @param N2 size factor 2
- * @param X_re pointer to output real part
- * @param X_im pointer to outpuj ima2inaby part
+ * @param X_re pointer to array of output real part
+ * @param X_im pointer to array of output imaginaby part
  */
 void dft_CT(
     float* x_re, float* x_im, const size_t N1, const size_t N2, float* X_re,
@@ -83,10 +83,6 @@ void dft_CT(
 
   /**
    * reshape:
-   * a/b
-   * | | | |
-   * | | | |
-   * | | | |
    * k = N2*a + b
    * n = N1*i + j
    * i,b ∈ 0..N2-1

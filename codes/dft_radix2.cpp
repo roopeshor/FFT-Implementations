@@ -32,8 +32,8 @@ void dft_radix2(float* _x_re, float* _x_im, size_t N, float* xr, float* xi) {
   // stage: 2pt, 4pt, 8pt dft
   for (uint8_t stage = 0; stage < bits; stage++) {
     // group -> group of butterfly
-    for (uint8_t startIndex = 0; startIndex < N; startIndex += groupSize) {
-      for (int j = 0; j < groupOperations; j++) {
+    for (size_t startIndex = 0; startIndex < N; startIndex += groupSize) {
+      for (size_t j = 0; j < groupOperations; j++) {
         idxTop = startIndex + j;
         idxBottom = idxTop + groupOperations;
 

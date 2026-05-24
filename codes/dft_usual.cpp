@@ -13,10 +13,10 @@
  * @param X_im pointer to output imaginary part
  */
 void dft(float* x_re, float* x_im, size_t N, float* X_re, float* X_im) {
-  for (int k = 0; k < N; k++) {
+  for (size_t k = 0; k < N; k++) {
     X_re[k] = 0;
     X_im[k] = 0;
-    for (int n = 0; n < N; n++) {
+    for (size_t n = 0; n < N; n++) {
       complexMulAcc(
           x_re[n],
           x_im[n],
@@ -55,10 +55,10 @@ void dft_input_reindexed(
     size_t skip = 1, size_t start = 0
 ) {
   size_t np;
-  for (int k = 0; k < N; k++) {
+  for (size_t k = 0; k < N; k++) {
     X_re[k] = 0;
     X_im[k] = 0;
-    for (int n = 0; n < N; n++) {
+    for (size_t n = 0; n < N; n++) {
       np = n * skip + start;
       complexMulAcc(
           x_re[np],

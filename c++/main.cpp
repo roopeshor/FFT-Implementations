@@ -15,7 +15,7 @@ int main() {
   float* out_ct_re = new float[N];
   float* out_ct_im = new float[N];
   for (size_t i = 0; i < N; i++) {
-    arr_re[i] = 1;
+    arr_re[i] = i;
     arr_im[i] = 0;
   }
   dft(arr_re, arr_im, N, out_re, out_im);

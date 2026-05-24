@@ -1,15 +1,13 @@
 `timescale 1ns / 1ps
-`include "structs.sv"
-`include "twiddle_factor.sv"
-`include "butterfly_structural.sv"
+`include "structs_float.sv"
+`include "twiddle_factor_float.sv"
 
 // -------------------------------------------------------------------------
 // Floating-Point FFT Module
 // -------------------------------------------------------------------------
 module fft_radix2 #(
-    parameter int N = 16,
-    parameter int FP_WIDTH = 16
-) (
+    parameter int N = 16
+)(
     input logic clk,
     input logic rst,
     input logic start,
@@ -61,32 +59,57 @@ module fft_radix2 #(
     end
   endgenerate
 
+  complex_t w, a, b, c, d;
+
+  // ---------------------------------------------------------------------
+  // Twiddle Factor ROM (Floating Point Literals)
+  // ---------------------------------------------------------------------
+  twiddle_factor #(
+      .BF_BITS(BF_BITS)
+  ) tf1 (
+      .twiddle_idx(twiddle_idx),
+      .w(w)
+  );
+
   // ---------------------------------------------------------------------
   // Address Generation Logic
   // ---------------------------------------------------------------------
   logic [STAGES-1:0] mask;
   logic [STAGES-1:0] bf_pad = STAGES'(bf_idx);
+  // 32'(stage) tells Verilator to treat the 2-bit variable as a 32-bit int for the math
+  // STAGES'(...) explicitly casts the final mask down to exactly 4 bits
   assign mask = STAGES'((32'd1 << 32'(stage)) - 32'd1);
+
   always_comb begin
+
     addr_a = ((bf_pad & ~mask) << 1) | (bf_pad & mask);
+
     addr_b = addr_a + STAGES'(32'd1 << 32'(stage));
+
     twiddle_idx = (STAGES - 1)'((bf_pad & mask) << (STAGES - 1 - 32'(stage)));
   end
 
   // ---------------------------------------------------------------------
-  // Twiddle Factor ROM (Floating Point Literals)
-  // ---------------------------------------------------------------------
-  twiddle_factor #(.BF_BITS(BF_BITS)) tf1 (.twiddle_idx, .w);
-
-
-  // ---------------------------------------------------------------------
   // Combinational Floating-Point Butterfly
   // ---------------------------------------------------------------------
-  complex_t w, a, b, c, d;
+  real bw_re, bw_im;
 
-  assign a = mem[addr_a];
-  assign b = mem[addr_b];
-  butterfly_structural bs1 (.a, .b, .w, .c, .d);
+  always_comb begin
+    a = mem[addr_a];
+    b = mem[addr_b];
+
+    // Native floating point multiplication
+    bw_re = (b.re * w.re) - (b.im * w.im);
+    bw_im = (b.re * w.im) + (b.im * w.re);
+
+    // Native floating point addition/subtraction (no scaling required)
+    c.re = a.re + bw_re;
+    c.im = a.im + bw_im;
+
+    d.re = a.re - bw_re;
+    d.im = a.im - bw_im;
+  end
+
   // Assign outputs
   assign dout_a = mem[addr_a];
   assign dout_b = mem[addr_b];
@@ -114,7 +137,7 @@ module fft_radix2 #(
         LOAD: begin
           if (input_valid) begin
             mem[load_addr] <= din;
-            if (load_cnt == N_BITS'(N - 1)) begin
+            if (load_cnt == N_BITS'(N-1)) begin
               state <= COMP_READ;
               step  <= 0;
             end
@@ -127,7 +150,8 @@ module fft_radix2 #(
         COMP_WRITE: begin
           mem[addr_a] <= c;
           mem[addr_b] <= d;
-          if (step == STEPS_BITS'(STEPS - 1)) begin
+
+          if (step == STEPS_BITS'(STEPS-1)) begin
             state <= DONE;
           end else begin
             step  <= step + 1;

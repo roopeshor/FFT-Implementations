@@ -7,15 +7,15 @@ module twiddle_factor #(
 );
   always_comb begin
     case (twiddle_idx)
-      3'd0: w = '{re: 1.0000000000, im: 0.0000000000};
-      3'd1: w = '{re: 0.9238795325, im: -0.3826834324};
-      3'd2: w = '{re: 0.7071067812, im: -0.7071067812};
-      3'd3: w = '{re: 0.3826834324, im: -0.9238795325};
-      3'd4: w = '{re: 0.0000000000, im: -1.0000000000};
-      3'd5: w = '{re: -0.3826834324, im: -0.9238795325};
-      3'd6: w = '{re: -0.7071067812, im: -0.7071067812};
-      3'd7: w = '{re: -0.9238795325, im: -0.3826834324};
-      default: w = '{re: 0.0, im: 0.0};
+      3'd0  : w = '{re: WIDTH'( 256), im: WIDTH'(   0)};
+      3'd1  : w = '{re: WIDTH'( 237), im: WIDTH'( -98)};
+      3'd2  : w = '{re: WIDTH'( 181), im: WIDTH'(-181)};
+      3'd3  : w = '{re: WIDTH'(  98), im: WIDTH'(-237)};
+      3'd4  : w = '{re: WIDTH'(   0), im: WIDTH'(-256)};
+      3'd5  : w = '{re: WIDTH'( -98), im: WIDTH'(-237)};
+      3'd6  : w = '{re: WIDTH'(-181), im: WIDTH'(-181)};
+      3'd7  : w = '{re: WIDTH'(-237), im: WIDTH'( -98)};
+      default: w = '{re: WIDTH'(   0), im: WIDTH'(   0)};
     endcase
   end
 endmodule

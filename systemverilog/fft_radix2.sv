@@ -9,6 +9,7 @@
 module fft_radix2 #(
     parameter int N = 16,
     parameter int FP_WIDTH = 16
+    parameter int Q_FRAC = 8
 ) (
     input logic clk,
     input logic rst,
@@ -32,11 +33,10 @@ module fft_radix2 #(
   localparam int STAGE_BITS = $clog2(STAGES);
   localparam int STEPS_BITS = $clog2(STEPS);
 
-  typedef enum logic [2:0] {
+  typedef enum logic [1:0] {
     IDLE,
     LOAD,
-    COMP_READ,
-    COMP_WRITE,
+    WRITE,
     DONE
   } state_t;
   state_t state;
@@ -53,6 +53,7 @@ module fft_radix2 #(
   logic [N_BITS-1:0] addr_a, addr_b;
   logic [ N_BITS-1:0] load_addr;
   logic [BF_BITS-1:0] twiddle_idx;
+  complex_t w, a, b, c, d;
 
   genvar i;
   generate
@@ -61,9 +62,7 @@ module fft_radix2 #(
     end
   endgenerate
 
-  // ---------------------------------------------------------------------
   // Address Generation Logic
-  // ---------------------------------------------------------------------
   logic [STAGES-1:0] mask;
   logic [STAGES-1:0] bf_pad = STAGES'(bf_idx);
   assign mask = STAGES'((32'd1 << 32'(stage)) - 32'd1);
@@ -73,27 +72,15 @@ module fft_radix2 #(
     twiddle_idx = (STAGES - 1)'((bf_pad & mask) << (STAGES - 1 - 32'(stage)));
   end
 
-  // ---------------------------------------------------------------------
-  // Twiddle Factor ROM (Floating Point Literals)
-  // ---------------------------------------------------------------------
   twiddle_factor #(.BF_BITS(BF_BITS)) tf1 (.twiddle_idx, .w);
-
-
-  // ---------------------------------------------------------------------
-  // Combinational Floating-Point Butterfly
-  // ---------------------------------------------------------------------
-  complex_t w, a, b, c, d;
 
   assign a = mem[addr_a];
   assign b = mem[addr_b];
   butterfly_structural bs1 (.a, .b, .w, .c, .d);
-  // Assign outputs
   assign dout_a = mem[addr_a];
   assign dout_b = mem[addr_b];
 
-  // ---------------------------------------------------------------------
-  // Control FSM
-  // ---------------------------------------------------------------------
+  // FSM
   always_ff @(posedge clk or posedge rst) begin
     if (rst) begin
       state    <= IDLE;
@@ -115,23 +102,20 @@ module fft_radix2 #(
           if (input_valid) begin
             mem[load_addr] <= din;
             if (load_cnt == N_BITS'(N - 1)) begin
-              state <= COMP_READ;
+              state <= WRITE;
               step  <= 0;
             end
             load_cnt <= load_cnt + 1;
           end
         end
-        COMP_READ: begin
-          state <= COMP_WRITE;
-        end
-        COMP_WRITE: begin
+        WRITE: begin
           mem[addr_a] <= c;
           mem[addr_b] <= d;
           if (step == STEPS_BITS'(STEPS - 1)) begin
             state <= DONE;
           end else begin
             step  <= step + 1;
-            state <= COMP_READ;
+            state <= WRITE;
           end
         end
         DONE: begin
@@ -142,7 +126,6 @@ module fft_radix2 #(
             ready <= 1'b0;
           end
         end
-        default: done <= 1'b0;
       endcase
     end
   end

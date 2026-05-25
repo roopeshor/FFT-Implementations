@@ -27,7 +27,7 @@ int main() {
   dft(arr_re, arr_im, N, out_re, out_im); // for reference
 
   // pick the algorithm
-  dft_CT(arr_re, arr_im, N1, N2, out_ct_re, out_ct_im);
+  dft_radix2_single_loop(arr_re, arr_im, N, out_ct_re, out_ct_im);
   std::cout << "Array: ";
   for (size_t i = 0; i < N; i++) {
     std::cout << std::endl

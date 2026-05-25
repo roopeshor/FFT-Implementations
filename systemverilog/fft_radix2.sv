@@ -8,7 +8,7 @@
 // -------------------------------------------------------------------------
 module fft_radix2 #(
     parameter int N = 16,
-    parameter int FP_WIDTH = 16
+    parameter int FP_WIDTH = 16,
     parameter int Q_FRAC = 8
 ) (
     input logic clk,
@@ -20,8 +20,7 @@ module fft_radix2 #(
 
     output logic ready,
     output logic done,
-    output complex_t dout_a,
-    output complex_t dout_b
+    output complex_t mem[0:N-1]
 );
 
   localparam int N_BITS = $clog2(N);
@@ -41,7 +40,6 @@ module fft_radix2 #(
   } state_t;
   state_t state;
 
-  complex_t mem[0:N-1];
   logic [N_BITS-1:0] load_cnt;
   logic [STEPS_BITS-1:0] step;
 
@@ -77,8 +75,6 @@ module fft_radix2 #(
   assign a = mem[addr_a];
   assign b = mem[addr_b];
   butterfly_structural bs1 (.a, .b, .w, .c, .d);
-  assign dout_a = mem[addr_a];
-  assign dout_b = mem[addr_b];
 
   // FSM
   always_ff @(posedge clk or posedge rst) begin

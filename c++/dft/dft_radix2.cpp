@@ -94,7 +94,6 @@ void dft_radix2_single_loop(
     for (size_t i = 0; i < N / 2; i++) {
       idxTop = ((i & ~mask) << 1) | (i & mask);
       j = (i & mask) << (bits - 1 - stage);
-      ;
       idxBottom = idxTop + groupOperations;
 
       wr = std::cos(2 * PI * j / ((num_t)N));

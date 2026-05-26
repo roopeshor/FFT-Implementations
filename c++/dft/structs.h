@@ -1,0 +1,1 @@
+typedef double num_t;

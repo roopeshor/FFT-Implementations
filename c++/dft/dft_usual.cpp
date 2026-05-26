@@ -2,17 +2,18 @@
 
 #include <iostream>
 
-#include "utils.cpp"
-#pragma once
+#include "structs.h"
+#include "utils.h"
+
 /**
  * Usual DFT
- * @param x_re Real part of Input array of size N
- * @param x_im Imaginary part of Input array of size N
+ * @param x_re Pointer array of real part of input of size N
+ * @param x_im Pointer array of imaginary part of input of size N
  * @param N size of array
- * @param X_re pointer to output real part
- * @param X_im pointer to output imaginary part
+ * @param X_re pointer to array of real part output of size N
+ * @param X_im pointer to array of imaginary part output of size N
  */
-void dft(float* x_re, float* x_im, size_t N, float* X_re, float* X_im) {
+void dft(num_t* x_re, num_t* x_im, size_t N, num_t* X_re, num_t* X_im) {
   for (size_t k = 0; k < N; k++) {
     X_re[k] = 0;
     X_im[k] = 0;
@@ -51,7 +52,7 @@ void dft(float* x_re, float* x_im, size_t N, float* X_re, float* X_im) {
  * @param start starting positon of input
  */
 void dft_input_reindexed(
-    float* x_re, float* x_im, size_t N, float* X_re, float* X_im,
+    num_t* x_re, num_t* x_im, size_t N, num_t* X_re, num_t* X_im,
     size_t skip = 1, size_t start = 0
 ) {
   size_t np;

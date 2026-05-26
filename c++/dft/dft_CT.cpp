@@ -1,6 +1,6 @@
-#include "dft_usual.cpp"
-#include "utils.cpp"
-#pragma once
+#include "dft_usual.h"
+#include "structs.h"
+#include "utils.h"
 /**
  * Iterative Cooley Tukey FFT
  * @param xr pointer to input array of real part
@@ -11,8 +11,8 @@
  * @param X_im pointer to array of output imaginaby part
  */
 void dft_CT(
-    float* x_re, float* x_im, const size_t N1, const size_t N2, float* X_re,
-    float* X_im
+    num_t* x_re, num_t* x_im, const size_t N1, const size_t N2, num_t* X_re,
+    num_t* X_im
 ) {
   /**
    * N = N1*N2
@@ -24,10 +24,10 @@ void dft_CT(
    *
    */
 
-  float colDFT_re[N2 * N1];
-  float colDFT_im[N2 * N1];
-  float rowDFT_re[N1 * N2];
-  float rowDFT_im[N1 * N2];
+  num_t colDFT_re[N2 * N1];
+  num_t colDFT_im[N2 * N1];
+  num_t rowDFT_re[N1 * N2];
+  num_t rowDFT_im[N1 * N2];
 
   /**
    * find DFT along columns:

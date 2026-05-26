@@ -1,16 +1,18 @@
+#include <math.h>
+
 #include <cstdint>
 #include <iostream>
-#pragma once
-const float PI = 3.14159265358979323;
 
+#include "structs.h"
+
+const num_t PI = 3.14159265358979323;
 /**
  * Prints elements of array of size N, with given separator
  * @param arr Input array
  * @param N array size
  * @param sep separator
  */
-template <typename T>
-void print_arr(T* arr, size_t N, char sep = ',') {
+void print_arr(num_t* arr, size_t N, char sep = ',') {
   for (size_t i = 0; i < N; i++) {
     std::cout << arr[i] << ",";
   }
@@ -39,8 +41,7 @@ size_t bit_reverse(size_t num, uint8_t N) {
  * @param N number of elements in array.
  * @param exp number of bits in size of array. < 255
  */
-template <typename T>
-void rearrange_bit_reverse(T* src, T* dest, size_t N, uint8_t exp) {
+void rearrange_bit_reverse(num_t* src, num_t* dest, size_t N, uint8_t exp) {
   for (size_t i = 0; i < N; i++) {
     dest[bit_reverse(i, exp)] = src[i];
   }
@@ -63,9 +64,9 @@ void rearrange_bit_reverse(T* src, T* dest, size_t N, uint8_t exp) {
  * @param Dr real part of output written to this mem space
  * @param Di imag part of output written to this mem space
  */
-inline void complexMulAdd(
-    float Ar, float Ai, float Br, float Bi, float Cr, float Ci, float* Dr,
-    float* Di
+void complexMulAdd(
+    num_t Ar, num_t Ai, num_t Br, num_t Bi, num_t Cr, num_t Ci, num_t* Dr,
+    num_t* Di
 ) {
   *Dr = Ar + Br * Cr - Bi * Ci;
   *Di = Ai + Br * Ci + Bi * Cr;
@@ -87,9 +88,9 @@ inline void complexMulAdd(
  * @param Dr real part of output. Output written to this mem space
  * @param Di imag part of output. Output written to this mem space
  */
-inline void complexMulAddAcc(
-    float Ar, float Ai, float Br, float Bi, float Cr, float Ci, float* Dr,
-    float* Di
+void complexMulAddAcc(
+    num_t Ar, num_t Ai, num_t Br, num_t Bi, num_t Cr, num_t Ci, num_t* Dr,
+    num_t* Di
 ) {
   *Dr += Ar + Br * Cr - Bi * Ci;
   *Di += Ai + Br * Ci + Bi * Cr;
@@ -108,8 +109,8 @@ inline void complexMulAddAcc(
  * @param Cr real part of output written to this mem space
  * @param Ci imag part of output written to this mem space
  */
-inline void complexMulAcc(
-    float Ar, float Ai, float Br, float Bi, float* Cr, float* Ci
+void complexMulAcc(
+    num_t Ar, num_t Ai, num_t Br, num_t Bi, num_t* Cr, num_t* Ci
 ) {
   *Cr += Ar * Br - Ai * Bi;
   *Ci += Ar * Bi + Ai * Br;
@@ -126,11 +127,11 @@ inline void complexMulAcc(
  * @param Br input real
  * @param Bi input imaginary
  */
-inline void complexMulSelf(float* Ar, float* Ai, float Br, float Bi) {
-  float _Ar = *Ar * Br - *Ai * Bi;
+void complexMulSelf(num_t* Ar, num_t* Ai, num_t Br, num_t Bi) {
+  num_t _Ar = *Ar * Br - *Ai * Bi;
   *Ai = *Ar * Bi + *Ai * Br;
   *Ar = _Ar;
 }
 
-inline float WNk_re(float k, float N) { return std::cos(2 * PI * k / N); }
-inline float WNk_im(float k, float N) { return -std::sin(2 * PI * k / N); }
+num_t WNk_re(num_t k, num_t N) { return std::cos(2 * PI * k / N); }
+num_t WNk_im(num_t k, num_t N) { return -std::sin(2 * PI * k / N); }

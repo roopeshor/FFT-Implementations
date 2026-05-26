@@ -1,5 +1,4 @@
 #include "side_quests.h"
-#pragma once
 /**
  * Reverses bit order of given number of with given number of bits
  * Time: ~11.1s for 6553610000 numbers in g++

@@ -1,7 +1,9 @@
 #include <iomanip>
-
-#include "dft_CT.cpp"
-#include "dft_radix2.cpp"
+#include <iostream>
+#include "dft/structs.h"
+#include "dft/dft_CT.h"
+#include "dft/dft_radix2.h"
+#include "dft/dft_usual.h"
 
 int main() {
   const size_t N1 = 4, N2 = 4;
@@ -9,13 +11,13 @@ int main() {
 
   /**Arrays */
 
-  float* arr_re = new float[N];
-  float* arr_im = new float[N];
+  num_t* arr_re = new num_t[N];
+  num_t* arr_im = new num_t[N];
 
-  float* out_re = new float[N];
-  float* out_im = new float[N];
-  float* out_ct_re = new float[N];
-  float* out_ct_im = new float[N];
+  num_t* out_re = new num_t[N];
+  num_t* out_im = new num_t[N];
+  num_t* out_ct_re = new num_t[N];
+  num_t* out_ct_im = new num_t[N];
 
 
   for (size_t i = 0; i < N; i++) {

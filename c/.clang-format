@@ -1,0 +1,11 @@
+BasedOnStyle: Google
+IndentWidth: 2
+ColumnLimit: 80
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: true
+# Ensures that if it wraps, it puts each argument on its own line
+AllowAllArgumentsOnNextLine: false
+# Prevents putting all arguments on one line if they don't fit perfectly
+BinPackArguments: false
+# Forces the closing parenthesis to be on a new line (C++11 and later)
+AlignAfterOpenBracket: BlockIndent

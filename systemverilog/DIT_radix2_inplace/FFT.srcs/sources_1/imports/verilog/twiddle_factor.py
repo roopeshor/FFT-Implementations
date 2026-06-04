@@ -1,9 +1,17 @@
 import math
 import sys
 import os
+def err():
+  print(
+"""Usage: py twiddle_factor.py N [width Q_point]
 
+if no width or Q_point is not given a floating point twiddle will be given.
+eg: py twiddle_factor.py 16        # creates a floating point list
+eg: py twiddle_factor.py 16 32 20  # creates a fixed point list
+""")
+  exit()
 
-def generate_twiddle_rom(N):
+def generate_floating_point_twiddles(N):
     # only needs N/2 twiddle factors
     num_twiddles = N // 2
 
@@ -57,11 +65,13 @@ def generate_fixed_point_twiddles(N=16, width=16, q_frac=8):
     scale = 1 << q_frac
 
     fileContent = f"""`timescale 1ns / 1ps
+
 module twiddle_factor #(
-    parameter int BF_BITS = {index_bits}
+    parameter TWIDDLE = {index_bits},
+    parameter FIXP_WIDTH = {width}
 ) (
-    input logic [BF_BITS-1:0] twiddle_idx,
-    output complex_t w
+    input  logic [TWIDDLE-1:0] twiddle_idx,
+    output logic signed [FIXP_WIDTH-1:0] wr, wi
 );
   always_comb begin
     case (twiddle_idx)
@@ -82,35 +92,34 @@ module twiddle_factor #(
         idx_str = f"{index_bits}'d{k}"
 
         # Use Python f-string padding to keep the columns perfectly aligned
-        fileContent += f"      {idx_str:<6}: w = '{{re: WIDTH'({real_fixed:>4}), im: WIDTH'({imag_fixed:>4})}};\n"
+        fileContent += f"      {idx_str:<6}: begin wr = FIXP_WIDTH'({real_fixed:>4}); wi = FIXP_WIDTH'({imag_fixed:>4}); end\n"
 
-    fileContent += f"""      default: w = '{{re: WIDTH'(   0), im: WIDTH'(   0)}};
+    fileContent += f"""      default: begin wr =  0; wi =    0; end
     endcase
   end
-endmodule"""
+endmodule
+"""
     return fileContent
 
 
-N = 16
-if len(sys.argv) > 1:
-    N = int(sys.argv[1])
+args = [16, 32, 20]
+file_str = ""
 
-if "fixed" in sys.argv:
-    print(f"Generating Fixed for N={N}")
-    s = generate_fixed_point_twiddles(N)
-    with open(
-        os.path.join(os.getcwd(), "systemverilog/twiddle_factor.sv"), "w"
-    ) as f:
-        f.write(s)
-        f.close()
+if (len(sys.argv) != 2) and (len(sys.argv) != 4):
+  print(sys.argv)
+  err()
 else:
-    print(f"Generating floating for N={N}")
-    s = generate_twiddle_rom(N)
-    with open(
-        os.path.join(
-            os.getcwd(), "systemverilog/floating/twiddle_factor_float.sv"
-        ),
-        "w",
-    ) as f:
-        f.write(s)
-        f.close()
+  for (i, x) in enumerate(sys.argv[1:]):
+    if not x.isnumeric(): err()
+    else: args[i] = int(x)
+
+if (len(sys.argv) == 4):
+  print(f"Generating Fixed for N={args[0]}, width={args[1]}, Q_POINT={args[2]}")
+  file_str = generate_fixed_point_twiddles(args[0], args[1], args[2])
+else:
+  print(f"Generating floating for N={args[0]}")
+  file_str = generate_floating_point_twiddles(args[0])
+
+with open(os.path.join(os.getcwd(), "twiddle_factor.sv"), "w") as f:
+    f.write(file_str)
+    f.close()

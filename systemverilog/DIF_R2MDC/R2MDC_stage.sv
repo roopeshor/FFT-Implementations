@@ -4,8 +4,8 @@
 module R2MDC_stage #(
     parameter int STAGES = 3,
     parameter int STAGE_IDX = 1,
-    parameter int DW = 16,
-    parameter int FIXP_Q = 10
+    parameter int DW = 32,
+    parameter int FIXP_Q = 20
 ) (
     input logic clk,
     input logic rst,
@@ -29,34 +29,34 @@ module R2MDC_stage #(
   //! half the number of data points
   // localparam int HALF_N = N / 2;
   localparam D = 1 << (STAGES - 1 - STAGE_IDX);
-  // localparam D2 = 1 << (STAGES - STAGE_IDX);
-  // Delay_pipe #(
-  //     .DW(DW),
-  //     .CYCLES(D2)
-  // ) d_r (
-  //     .clk(clk),
-  //     .rst(rst),
-  //     .en (1'b1),
-  //     .d  (in0_re),
-  //     .q  (in0_re_delayed)
-  // );
+  localparam D2 = 1 << (STAGES - STAGE_IDX);
+  Delay_pipe #(
+      .DW(DW),
+      .CYCLES(D2)
+  ) d_r (
+      .clk(clk),
+      .rst(rst),
+      .en (1'b1),
+      .d  (in0_re),
+      .q  (in0_re_delayed)
+  );
   //! delays imaginary part of input
-  // Delay_pipe #(
-  //     .DW(DW),
-  //     .CYCLES(D2)
-  // ) d_i (
-  //     .clk(clk),
-  //     .rst(rst),
-  //     .en (1'b1),
-  //     .d  (in0_im),
-  //     .q  (in0_im_delayed)
-  // );
+  Delay_pipe #(
+      .DW(DW),
+      .CYCLES(D2)
+  ) d_i (
+      .clk(clk),
+      .rst(rst),
+      .en (1'b1),
+      .d  (in0_im),
+      .q  (in0_im_delayed)
+  );
 
   Butterfly #(
       .DW(DW)
   ) bf (
-      .a_re(in0_re),
-      .a_im(in0_im),
+      .a_re(in0_re_delayed),
+      .a_im(in0_im_delayed),
       .b_re(in1_re),
       .b_im(in1_im),
       .c_re(bf0_re),

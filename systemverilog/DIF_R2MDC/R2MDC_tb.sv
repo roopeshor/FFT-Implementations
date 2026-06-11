@@ -49,15 +49,14 @@ module R2MDC_tb;
     // ---------------------------------------------------------
     int x,y;
     initial begin
-    #100;
         rst = 1;
         in_valid = 0;
         din_re = 0;
         din_im = 0;
         
-        repeat(5) @(posedge clk);
+        repeat(5) @(negedge clk);
         rst = 0;
-        @(posedge clk);
+        @(negedge clk);
         $display("=================================================");
         $display("   Injecting 8-Point Serial Data: x[n] = n");
         $display("=================================================\n");
@@ -69,7 +68,7 @@ module R2MDC_tb;
           din_re = DW'(x << FIXP_Q); 
           din_im = DW'(y << FIXP_Q);
           $display("x[%2d] = %8.3f + %8.3fj", i, x, y);
-          @(posedge clk);
+          @(negedge clk);
         end
 
         in_valid = 1'b0;
@@ -77,7 +76,8 @@ module R2MDC_tb;
         din_im = '0;
 
         // Wait to catch all outputs
-        repeat(N) @(posedge clk);
+        @(negedge out_valid);
+        @(negedge clk)
         $finish;
     end
 

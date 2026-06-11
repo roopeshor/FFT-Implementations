@@ -22,8 +22,8 @@ module Controller #(
     output logic signed [DW-1:0] out1_re,
     output logic signed [DW-1:0] out1_im
 );
-  // assign out0_re = din_re;
-  // assign out0_im = din_im;
+  assign out1_re = din_re;
+  assign out1_im = din_im;
   assign out0_re = din_re;
   assign out0_im = din_im;
 
@@ -35,28 +35,28 @@ module Controller #(
     if (rst) cnt <= '0;
     else if (in_valid) cnt <= cnt + 1'b1;
   end
-  localparam int N = 1 << STAGES;
-  localparam int HALF_N = N / 2;
-  Delay_pipe #(
-      .DW(DW),
-      .CYCLES(HALF_N)
-  ) d_r (
-      .clk(clk),
-      .rst(rst),
-      .en (1'b1),
-      .d  (din_re),
-      .q  (out1_re)
-  );
-  Delay_pipe #(
-      .DW(DW),
-      .CYCLES(HALF_N)
-  ) d_i (
-      .clk(clk),
-      .rst(rst),
-      .en (1'b1),
-      .d  (din_im),
-      .q  (out1_im)
-  );
+  // localparam int N = 1 << STAGES;
+  // localparam int HALF_N = N / 2;
+  // Delay_pipe #(
+  //     .DW(DW),
+  //     .CYCLES(HALF_N)
+  // ) d_r (
+  //     .clk(clk),
+  //     .rst(rst),
+  //     .en (1'b1),
+  //     .d  (din_re),
+  //     .q  (out1_re)
+  // );
+  // Delay_pipe #(
+  //     .DW(DW),
+  //     .CYCLES(HALF_N)
+  // ) d_i (
+  //     .clk(clk),
+  //     .rst(rst),
+  //     .en (1'b1),
+  //     .d  (din_im),
+  //     .q  (out1_im)
+  // );
 
   assign out_valid = in_valid && cnt[STAGES-1];
   assign out_cnt   = cnt[STAGES-2:0];

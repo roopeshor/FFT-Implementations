@@ -48,11 +48,12 @@ module Commutator #(parameter DW=16, D=1, CNT_W=1)(
             sw1_re = dly_in1_re; sw1_im = dly_in1_im;
         end
     end
-
+    Delay_pipe #(.DW(DW), .CYCLES(D)) post_r (.clk(clk), .rst(rst), .en(1'b1), .d(sw0_re), .q(out0_re));
+    Delay_pipe #(.DW(DW), .CYCLES(D)) post_i (.clk(clk), .rst(rst), .en(1'b1), .d(sw0_im), .q(out0_im));
     assign out1_re = sw1_re;
     assign out1_im = sw1_im;
-    assign out0_re = sw0_re;
-    assign out0_im = sw0_im;
+    // assign out0_re = sw0_re;
+    // assign out0_im = sw0_im;
     ////// delay control singals
     Delay_pipe #(.DW(1 + CNT_W), .CYCLES(D)) ctrl_pipe (
         .clk(clk), .rst(rst), .en(1'b1),

@@ -6,8 +6,8 @@ module R2MDC_tb;
     localparam STAGES = 3;
     localparam N = 1 << STAGES;
     localparam HALF_N = N / 2;
-    localparam DW = 16;
-    localparam FIXP_Q = 10;
+    localparam DW = 32;
+    localparam FIXP_Q = 20;
     localparam real SCALE = 1 << FIXP_Q; 
 
     // Signals

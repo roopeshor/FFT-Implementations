@@ -19,7 +19,8 @@ module fft_radix2_tb ();
   fft_radix2 #(
       .N(N),
       .FIXP_WIDTH(FIXP_WIDTH),
-      .FIXP_Q(FIXP_Q)
+      .FIXP_Q(FIXP_Q),
+      .DEBUG('0)
   ) dut (
       .clk(clk),
       .rst(rst),

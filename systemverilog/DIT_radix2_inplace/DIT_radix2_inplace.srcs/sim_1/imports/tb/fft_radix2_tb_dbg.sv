@@ -1,18 +1,17 @@
 `timescale 1ns / 1ps
 import DIT_radix2_inplace::*;
 // FSM states
-module fft_radix2_tb ();
+module fft_radix2_tb_dbg ();
 
   localparam N = 8;
   localparam N_BITS = $clog2(N);
-  localparam FIXP_WIDTH = 40;
-  localparam FIXP_Q = 20;
+  localparam FIXP_WIDTH = 16;
+  localparam FIXP_Q = 10;
 
   logic clk;
   logic rst;
   logic start;
   logic input_valid;
-  logic output_read_en;
   logic [$clog2(N)-1:0] output_read_addr;
   logic signed [FIXP_WIDTH-1:0] din_re, din_im;
 
@@ -32,7 +31,6 @@ module fft_radix2_tb ();
       .din_re(din_re),
       .din_im(din_im),
       .output_ready(output_ready),
-      .output_read_en(output_read_en),
       .output_read_addr(output_read_addr),
       .dout_re(dout_re),
       .dout_im(dout_im)
@@ -77,10 +75,8 @@ module fft_radix2_tb ();
     input_valid = 0;
     din_re = 0;
     din_im = 0;
-    output_read_en = 0;
     output_read_addr = 0;
     start = 0;
-
 
     @(posedge clk);
     rst = 0;
@@ -101,7 +97,6 @@ module fft_radix2_tb ();
     @(posedge clk);
 
 
-    output_read_en = 1;
     $display("--- Final FFT Output Spectrum ---");
     $display("Bin | Real (Fixed) | Imag (Fixed) | Real (Float) | Imag (Float)");
     $display("---------------------------------------------------------------");
@@ -117,7 +112,6 @@ module fft_radix2_tb ();
     // float_mem_re = $itor($signed(dout_re)) / (1.0 * (1 << FIXP_Q));
     // float_mem_im = $itor($signed(dout_im)) / (1.0 * (1 << FIXP_Q));
     // $display("%2d  | %12d | %12d | %12.4f | %12.4f", N - 1, dout_re, dout_im, float_mem_re, float_mem_im);
-    // output_read_en = 0;
 
     $finish;
   end
@@ -130,7 +124,9 @@ module fft_radix2_tb ();
       IDLE: return "IDLE";
       LOAD: return "LOAD";
       COMPUTE: return "COMPUTE";
+      XS: return "XS";
       DONE: return "DONE";
+      default: return "UKN";
     endcase
   endfunction
 endmodule

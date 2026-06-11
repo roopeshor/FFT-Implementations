@@ -3,7 +3,7 @@
 **/*.kate-swp
 **/.vscode
 build
-
+**/*.pdf
 
 
 # gitignore template for Xilinx Vivado Design Suite

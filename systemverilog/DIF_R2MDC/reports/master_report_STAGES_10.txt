@@ -1,0 +1,621 @@
+=======================================================
+ MASTER REPORT: R2MDC FFT (STAGES = 10)
+=======================================================
+
+--- TOTAL NET COUNT ---
+Logical Nets: 17278
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date         : Fri Jun 12 18:08:09 2026
+| Host         : nebula running 64-bit Debian GNU/Linux forky/sid
+| Command      : report_utilization -hierarchical -file reports/master_report_STAGES_10.txt -append
+| Design       : R2MDC
+| Device       : xc7a100tcsg324-1
+| Speed File   : -1
+| Design State : Physopt postRoute
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++---------------------------------+--------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+|             Instance            |             Module             | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++---------------------------------+--------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+| R2MDC                           |                          (top) |       2831 |       1040 |       0 | 1791 | 2217 |      0 |     12 |         36 |
+|   (R2MDC)                       |                          (top) |         26 |          2 |       0 |   24 |  280 |      0 |      0 |          0 |
+|   gen_stages[10].stage_inst     |    R2MDC_stage__parameterized8 |          0 |          0 |       0 |    0 |   97 |      0 |      0 |          0 |
+|     (gen_stages[10].stage_inst) |    R2MDC_stage__parameterized8 |          0 |          0 |       0 |    0 |   65 |      0 |      0 |          0 |
+|   gen_stages[1].stage_inst      |                    R2MDC_stage |       1022 |        182 |       0 |  840 |  229 |      0 |      2 |          4 |
+|     (gen_stages[1].stage_inst)  |                    R2MDC_stage |          1 |          1 |       0 |    0 |   84 |      0 |      2 |          0 |
+|     d_i                         |     Delay_pipe__parameterized1 |        296 |         40 |       0 |  256 |   32 |      0 |      0 |          0 |
+|     d_r                         |  Delay_pipe__parameterized1_37 |        296 |         40 |       0 |  256 |   32 |      0 |      0 |          0 |
+|     gen_stage.comm              |                     Commutator |        429 |        101 |       0 |  328 |   81 |      0 |      0 |          0 |
+|       pre_r                     |                  Delay_pipe_40 |        168 |         40 |       0 |  128 |   32 |      0 |      0 |          0 |
+|       ctrl_pipe                 |     Delay_pipe__parameterized0 |         77 |          5 |       0 |   72 |   17 |      0 |      0 |          0 |
+|       pre_i                     |                  Delay_pipe_39 |        168 |         40 |       0 |  128 |   32 |      0 |      0 |          0 |
+|   gen_stages[2].stage_inst      |    R2MDC_stage__parameterized0 |        532 |        116 |       0 |  416 |  222 |      0 |      2 |          4 |
+|     (gen_stages[2].stage_inst)  |    R2MDC_stage__parameterized0 |          0 |          0 |       0 |    0 |   80 |      0 |      0 |          0 |
+|     d_i                         |                     Delay_pipe |        136 |          8 |       0 |  128 |   32 |      0 |      0 |          0 |
+|     d_r                         |                  Delay_pipe_32 |        136 |          8 |       0 |  128 |   32 |      0 |      0 |          0 |
+|     gen_stage.comm              |     Commutator__parameterized0 |        260 |        100 |       0 |  160 |   78 |      0 |      0 |          0 |
+|       pre_r                     |  Delay_pipe__parameterized2_35 |        104 |         40 |       0 |   64 |   32 |      0 |      0 |          0 |
+|       pre_i                     |  Delay_pipe__parameterized2_34 |        104 |         40 |       0 |   64 |   32 |      0 |      0 |          0 |
+|   gen_stages[3].stage_inst      |    R2MDC_stage__parameterized1 |        321 |        115 |       0 |  206 |  218 |      0 |      0 |          4 |
+|     (gen_stages[3].stage_inst)  |    R2MDC_stage__parameterized1 |          0 |          0 |       0 |    0 |   78 |      0 |      0 |          0 |
+|     d_i                         |     Delay_pipe__parameterized2 |         72 |          8 |       0 |   64 |   32 |      0 |      0 |          0 |
+|     d_r                         |  Delay_pipe__parameterized2_27 |         72 |          8 |       0 |   64 |   32 |      0 |      0 |          0 |
+|     gen_stage.comm              |     Commutator__parameterized1 |        177 |         99 |       0 |   78 |   76 |      0 |      0 |          0 |
+|       pre_r                     |  Delay_pipe__parameterized4_30 |         72 |         40 |       0 |   32 |   32 |      0 |      0 |          0 |
+|       pre_i                     |  Delay_pipe__parameterized4_29 |         72 |         40 |       0 |   32 |   32 |      0 |      0 |          0 |
+|   gen_stages[4].stage_inst      |    R2MDC_stage__parameterized2 |        217 |        115 |       0 |  102 |  214 |      0 |      2 |          4 |
+|     (gen_stages[4].stage_inst)  |    R2MDC_stage__parameterized2 |          0 |          0 |       0 |    0 |   76 |      0 |      0 |          0 |
+|     gen_stage.comm              |     Commutator__parameterized2 |        137 |         99 |       0 |   38 |   74 |      0 |      0 |          0 |
+|       pre_r                     |  Delay_pipe__parameterized6_25 |         56 |         40 |       0 |   16 |   32 |      0 |      0 |          0 |
+|       pre_i                     |  Delay_pipe__parameterized6_24 |         56 |         40 |       0 |   16 |   32 |      0 |      0 |          0 |
+|   gen_stages[5].stage_inst      |    R2MDC_stage__parameterized3 |        182 |        114 |       0 |   68 |  210 |      0 |      0 |          4 |
+|     (gen_stages[5].stage_inst)  |    R2MDC_stage__parameterized3 |          0 |          0 |       0 |    0 |   74 |      0 |      0 |          0 |
+|     gen_stage.comm              |     Commutator__parameterized3 |        134 |         98 |       0 |   36 |   72 |      0 |      0 |          0 |
+|       pre_r                     |  Delay_pipe__parameterized8_20 |         56 |         40 |       0 |   16 |   32 |      0 |      0 |          0 |
+|       pre_i                     |  Delay_pipe__parameterized8_19 |         56 |         40 |       0 |   16 |   32 |      0 |      0 |          0 |
+|   gen_stages[6].stage_inst      |    R2MDC_stage__parameterized4 |        182 |        114 |       0 |   68 |  206 |      0 |      2 |          4 |
+|     (gen_stages[6].stage_inst)  |    R2MDC_stage__parameterized4 |          0 |          0 |       0 |    0 |   72 |      0 |      0 |          0 |
+|     gen_stage.comm              |     Commutator__parameterized4 |        134 |         98 |       0 |   36 |   70 |      0 |      0 |          0 |
+|       pre_r                     | Delay_pipe__parameterized10_15 |         56 |         40 |       0 |   16 |   32 |      0 |      0 |          0 |
+|       pre_i                     | Delay_pipe__parameterized10_14 |         56 |         40 |       0 |   16 |   32 |      0 |      0 |          0 |
+|   gen_stages[7].stage_inst      |    R2MDC_stage__parameterized5 |        131 |         97 |       0 |   34 |  234 |      0 |      2 |          4 |
+|     (gen_stages[7].stage_inst)  |    R2MDC_stage__parameterized5 |          0 |          0 |       0 |    0 |   70 |      0 |      0 |          0 |
+|     gen_stage.comm              |     Commutator__parameterized5 |         83 |         81 |       0 |    2 |  100 |      0 |      0 |          0 |
+|   gen_stages[8].stage_inst      |    R2MDC_stage__parameterized6 |        128 |         96 |       0 |   32 |  166 |      0 |      2 |          4 |
+|     (gen_stages[8].stage_inst)  |    R2MDC_stage__parameterized6 |          0 |          0 |       0 |    0 |   68 |      0 |      0 |          0 |
+|     gen_stage.comm              |     Commutator__parameterized6 |         80 |         80 |       0 |    0 |   34 |      0 |      0 |          0 |
+|   gen_stages[9].stage_inst      |    R2MDC_stage__parameterized7 |         82 |         81 |       0 |    1 |  131 |      0 |      0 |          4 |
+|     (gen_stages[9].stage_inst)  |    R2MDC_stage__parameterized7 |          1 |          0 |       0 |    1 |   66 |      0 |      0 |          0 |
+|     gen_stage.cmult             |                    Complex_Mul |         64 |         64 |       0 |    0 |    0 |      0 |      0 |          4 |
++---------------------------------+--------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+
+Design Route Status
+                                               :      # nets :
+   ------------------------------------------- : ----------- :
+   # of logical nets.......................... :        7695 :
+       # of nets not needing routing.......... :        3270 :
+           # of internally routed nets........ :        3270 :
+       # of routable nets..................... :        4425 :
+           # of fully routed nets............. :        4425 :
+       # of nets with routing errors.......... :           0 :
+   ------------------------------------------- : ----------- :
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date         : Fri Jun 12 18:08:09 2026
+| Host         : nebula running 64-bit Debian GNU/Linux forky/sid
+| Command      : report_timing_summary -file reports/master_report_STAGES_10.txt -append
+| Design       : R2MDC
+| Device       : 7a100t-csg324
+| Speed File   : -1  PRODUCTION 1.23 2018-06-13
+| Design State : Physopt postRoute
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+  Ignore I/O Paths                           :  No
+  Timing Early Launch at Borrowing Latches   :  No
+  Borrow Time for Max Delay Exceptions       :  Yes
+  Merge Timing Exceptions                    :  Yes
+  Inter-SLR Compensation                     :  Conservative
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+------------------------------------------------------------------------------------------------
+| Report Methodology
+| ------------------
+------------------------------------------------------------------------------------------------
+
+No report available as report_methodology has not been run prior. Run report_methodology on the current design for the summary of methodology violations.
+
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock (0)
+2. checking constant_clock (0)
+3. checking pulse_width_clock (0)
+4. checking unconstrained_internal_endpoints (0)
+5. checking no_input_delay (34)
+6. checking no_output_delay (65)
+7. checking multiple_clock (0)
+8. checking generated_clocks (0)
+9. checking loops (0)
+10. checking partial_input_delay (0)
+11. checking partial_output_delay (0)
+12. checking latch_loops (0)
+
+1. checking no_clock (0)
+------------------------
+ There are 0 register/latch pins with no clock.
+
+
+2. checking constant_clock (0)
+------------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock (0)
+---------------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints (0)
+------------------------------------------------
+ There are 0 pins that are not constrained for maximum delay.
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay (34)
+-------------------------------
+ There are 34 input ports with no input delay specified. (HIGH)
+
+ There are 0 input ports with no input delay but user has a false path constraint.
+
+
+6. checking no_output_delay (65)
+--------------------------------
+ There are 65 ports with no output delay specified. (HIGH)
+
+ There are 0 ports with no output delay but user has a false path constraint
+
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
+
+
+7. checking multiple_clock (0)
+------------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks (0)
+--------------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops (0)
+---------------------
+ There are 0 combinational loops in the design.
+
+
+10. checking partial_input_delay (0)
+------------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay (0)
+-------------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops (0)
+----------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+      1.546        0.000                      0                 6655        0.050        0.000                      0                 6655        4.020        0.000                       0                  4063  
+
+
+All user specified timing constraints are met.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+Clock  Waveform(ns)       Period(ns)      Frequency(MHz)
+-----  ------------       ----------      --------------
+clk    {0.000 5.000}      10.000          100.000         
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+clk                 1.546        0.000                      0                 6655        0.050        0.000                      0                 6655        4.020        0.000                       0                  4063  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  clk
+  To Clock:  clk
+
+Setup :            0  Failing Endpoints,  Worst Slack        1.546ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.050ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack        4.020ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             1.546ns  (required time - arrival time)
+  Source:                 gen_stages[6].stage_inst/gen_stage.cmult/p_rr00/i_/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            gen_stages[6].stage_inst/gen_stage.cmult/p_rr_reg/B[16]
+                            (rising edge-triggered cell DSP48E1 clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
+  Data Path Delay:        4.892ns  (logic 2.454ns (50.159%)  route 2.438ns (49.841%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.010ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.435ns = ( 14.435 - 10.000 ) 
+    Source Clock Delay      (SCD):    4.747ns
+    Clock Pessimism Removal (CPR):    0.322ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+    E15                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    E15                  IBUF (Prop_ibuf_I_O)         0.965     0.965 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.016     2.980    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.076 r  clk_IBUF_BUFG_inst/O
+                         net (fo=4062, routed)        1.671     4.747    gen_stages[6].stage_inst/gen_stage.cmult/clk_IBUF_BUFG
+    RAMB18_X0Y28         RAMB18E1                                     r  gen_stages[6].stage_inst/gen_stage.cmult/p_rr00/i_/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X0Y28         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[11])
+                                                      2.454     7.201 r  gen_stages[6].stage_inst/gen_stage.cmult/p_rr00/i_/DOADO[11]
+                         net (fo=14, routed)          2.438     9.639    gen_stages[6].stage_inst/gen_stage.cmult/p_rr00/i__n_4
+    DSP48_X0Y30          DSP48E1                                      r  gen_stages[6].stage_inst/gen_stage.cmult/p_rr_reg/B[16]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)       10.000    10.000 r  
+    E15                                               0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    E15                  IBUF (Prop_ibuf_I_O)         0.831    10.831 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.911    12.742    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    12.833 r  clk_IBUF_BUFG_inst/O
+                         net (fo=4062, routed)        1.602    14.435    gen_stages[6].stage_inst/gen_stage.cmult/clk_IBUF_BUFG
+    DSP48_X0Y30          DSP48E1                                      r  gen_stages[6].stage_inst/gen_stage.cmult/p_rr_reg/CLK
+                         clock pessimism              0.322    14.757    
+                         clock uncertainty           -0.035    14.722    
+    DSP48_X0Y30          DSP48E1 (Setup_dsp48e1_CLK_B[16])
+                                                     -3.536    11.186    gen_stages[6].stage_inst/gen_stage.cmult/p_rr_reg
+  -------------------------------------------------------------------
+                         required time                         11.186    
+                         arrival time                          -9.639    
+  -------------------------------------------------------------------
+                         slack                                  1.546    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.050ns  (arrival time - required time)
+  Source:                 gen_stages[1].stage_inst/r_bf0_re_reg[10]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            gen_stages[1].stage_inst/gen_stage.r2_bf0_re_reg[10]/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.325ns  (logic 0.141ns (43.439%)  route 0.184ns (56.561%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.199ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.981ns
+    Source Clock Delay      (SCD):    1.530ns
+    Clock Pessimism Removal (CPR):    0.251ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+    E15                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    E15                  IBUF (Prop_ibuf_I_O)         0.193     0.193 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.640     0.834    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.860 r  clk_IBUF_BUFG_inst/O
+                         net (fo=4062, routed)        0.670     1.530    gen_stages[1].stage_inst/clk_IBUF_BUFG
+    SLICE_X5Y49          FDRE                                         r  gen_stages[1].stage_inst/r_bf0_re_reg[10]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X5Y49          FDRE (Prop_fdre_C_Q)         0.141     1.671 r  gen_stages[1].stage_inst/r_bf0_re_reg[10]/Q
+                         net (fo=1, routed)           0.184     1.854    gen_stages[1].stage_inst/r_bf0_re__1[10]
+    SLICE_X4Y51          FDRE                                         r  gen_stages[1].stage_inst/gen_stage.r2_bf0_re_reg[10]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        0.000     0.000 r  
+    E15                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    E15                  IBUF (Prop_ibuf_I_O)         0.382     0.382 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.695     1.077    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.106 r  clk_IBUF_BUFG_inst/O
+                         net (fo=4062, routed)        0.875     1.981    gen_stages[1].stage_inst/clk_IBUF_BUFG
+    SLICE_X4Y51          FDRE                                         r  gen_stages[1].stage_inst/gen_stage.r2_bf0_re_reg[10]/C
+                         clock pessimism             -0.251     1.729    
+    SLICE_X4Y51          FDRE (Hold_fdre_C_D)         0.075     1.804    gen_stages[1].stage_inst/gen_stage.r2_bf0_re_reg[10]
+  -------------------------------------------------------------------
+                         required time                         -1.804    
+                         arrival time                           1.854    
+  -------------------------------------------------------------------
+                         slack                                  0.050    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         clk
+Waveform(ns):       { 0.000 5.000 }
+Period(ns):         10.000
+Sources:            { clk }
+
+Check Type        Corner  Lib Pin      Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period        n/a     DSP48E1/CLK  n/a            3.884         10.000      6.116      DSP48_X0Y18   gen_stages[1].stage_inst/gen_stage.cmult/p_ri_reg/CLK
+Low Pulse Width   Slow    SRLC32E/CLK  n/a            0.980         5.000       4.020      SLICE_X34Y32  gen_stages_r_1016_srl32___gen_stages_r_1527/CLK
+High Pulse Width  Slow    SRLC32E/CLK  n/a            0.980         5.000       4.020      SLICE_X34Y32  gen_stages_r_1016_srl32___gen_stages_r_1527/CLK
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version     : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date             : Fri Jun 12 18:08:10 2026
+| Host             : nebula running 64-bit Debian GNU/Linux forky/sid
+| Command          : report_power -file reports/master_report_STAGES_10.txt -append
+| Design           : R2MDC
+| Device           : xc7a100tcsg324-1
+| Design State     : routed
+| Grade            : commercial
+| Process          : typical
+| Characterization : Production
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Power Report
+
+Table of Contents
+-----------------
+1. Summary
+1.1 On-Chip Components
+1.2 Power Supply Summary
+1.3 Confidence Level
+2. Settings
+2.1 Environment
+2.2 Clock Constraints
+3. Detailed Reports
+3.1 By Hierarchy
+
+1. Summary
+----------
+
++--------------------------+--------------+
+| Total On-Chip Power (W)  | 0.292        |
+| Design Power Budget (W)  | Unspecified* |
+| Power Budget Margin (W)  | NA           |
+| Dynamic (W)              | 0.200        |
+| Device Static (W)        | 0.092        |
+| Effective TJA (C/W)      | 4.6          |
+| Max Ambient (C)          | 83.7         |
+| Junction Temperature (C) | 26.3         |
+| Confidence Level         | Medium       |
+| Setting File             | ---          |
+| Simulation Activity File | ---          |
+| Design Nets Matched      | NA           |
++--------------------------+--------------+
+* Specify Design Power Budget using, set_operating_conditions -design_power_budget <value in Watts>
+
+
+1.1 On-Chip Components
+----------------------
+
++-------------------------+-----------+----------+-----------+-----------------+
+| On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
++-------------------------+-----------+----------+-----------+-----------------+
+| Clocks                  |     0.019 |        3 |       --- |             --- |
+| Slice Logic             |     0.030 |     5759 |       --- |             --- |
+|   LUT as Shift Register |     0.014 |     1791 |     19000 |            9.43 |
+|   LUT as Logic          |     0.013 |     1040 |     63400 |            1.64 |
+|   Register              |     0.002 |     2217 |    126800 |            1.75 |
+|   CARRY4                |     0.001 |      160 |     15850 |            1.01 |
+|   Others                |     0.000 |      161 |       --- |             --- |
+| Signals                 |     0.035 |     4421 |       --- |             --- |
+| Block RAM               |     0.018 |        6 |       135 |            4.44 |
+| DSPs                    |     0.037 |       36 |       240 |           15.00 |
+| I/O                     |     0.061 |      100 |       210 |           47.62 |
+| Static Power            |     0.092 |          |           |                 |
+| Total                   |     0.292 |          |           |                 |
++-------------------------+-----------+----------+-----------+-----------------+
+
+
+1.2 Power Supply Summary
+------------------------
+
++-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
+| Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
++-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
+| Vccint    |       1.000 |     0.154 |       0.138 |      0.016 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.023 |       0.005 |      0.018 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco18    |       1.800 |     0.033 |       0.029 |      0.004 |       NA    | Unspecified | NA         |
+| Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.002 |       0.001 |      0.000 |       NA    | Unspecified | NA         |
+| MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
++-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
+
+
+1.3 Confidence Level
+--------------------
+
++-----------------------------+------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| User Input Data             | Confidence | Details                                        | Action                                                                                                     |
++-----------------------------+------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| Design implementation state | High       | Design is routed                               |                                                                                                            |
+| Clock nodes activity        | High       | User specified more than 95% of clocks         |                                                                                                            |
+| I/O nodes activity          | High       | User specified more than 95% of inputs         |                                                                                                            |
+| Internal nodes activity     | Medium     | User specified less than 25% of internal nodes | Provide missing internal nodes activity with simulation results or by editing the "By Resource Type" views |
+| Device models               | High       | Device models are Production                   |                                                                                                            |
+|                             |            |                                                |                                                                                                            |
+| Overall confidence level    | Medium     |                                                |                                                                                                            |
++-----------------------------+------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+
+
+2. Settings
+-----------
+
+2.1 Environment
+---------------
+
++-----------------------+--------------------------+
+| Ambient Temp (C)      | 25.0                     |
+| ThetaJA (C/W)         | 4.6                      |
+| Airflow (LFM)         | 250                      |
+| Heat Sink             | medium (Medium Profile)  |
+| ThetaSA (C/W)         | 4.6                      |
+| Board Selection       | medium (10"x10")         |
+| # of Board Layers     | 12to15 (12 to 15 Layers) |
+| Board Temperature (C) | 25.0                     |
++-----------------------+--------------------------+
+
+
+2.2 Clock Constraints
+---------------------
+
++-------+--------+-----------------+
+| Clock | Domain | Constraint (ns) |
++-------+--------+-----------------+
+| clk   | clk    |            10.0 |
++-------+--------+-----------------+
+
+
+3. Detailed Reports
+-------------------
+
+3.1 By Hierarchy
+----------------
+
++-----------------------------+-----------+
+| Name                        | Power (W) |
++-----------------------------+-----------+
+| R2MDC                       |     0.200 |
+|   gen_stages[10].stage_inst |     0.003 |
+|   gen_stages[1].stage_inst  |     0.024 |
+|     d_i                     |     0.005 |
+|     d_r                     |     0.005 |
+|     gen_stage.cmult         |     0.004 |
+|     gen_stage.comm          |     0.007 |
+|       pre_i                 |     0.003 |
+|       pre_r                 |     0.003 |
+|   gen_stages[2].stage_inst  |     0.020 |
+|     d_i                     |     0.002 |
+|     d_r                     |     0.002 |
+|     gen_stage.cmult         |     0.010 |
+|     gen_stage.comm          |     0.004 |
+|       pre_i                 |     0.002 |
+|       pre_r                 |     0.002 |
+|   gen_stages[3].stage_inst  |     0.012 |
+|     d_i                     |     0.001 |
+|     d_r                     |     0.001 |
+|     gen_stage.cmult         |     0.004 |
+|     gen_stage.comm          |     0.003 |
+|       pre_i                 |     0.001 |
+|       pre_r                 |     0.001 |
+|   gen_stages[4].stage_inst  |     0.016 |
+|     gen_stage.cmult         |     0.009 |
+|     gen_stage.comm          |     0.003 |
+|       pre_i                 |     0.001 |
+|       pre_r                 |     0.001 |
+|   gen_stages[5].stage_inst  |     0.011 |
+|     gen_stage.cmult         |     0.004 |
+|     gen_stage.comm          |     0.003 |
+|       pre_i                 |     0.001 |
+|       pre_r                 |     0.001 |
+|   gen_stages[6].stage_inst  |     0.015 |
+|     gen_stage.cmult         |     0.009 |
+|     gen_stage.comm          |     0.003 |
+|       pre_i                 |     0.001 |
+|       pre_r                 |     0.001 |
+|   gen_stages[7].stage_inst  |     0.013 |
+|     bf                      |     0.001 |
+|     gen_stage.cmult         |     0.007 |
+|     gen_stage.comm          |     0.003 |
+|       pre_i                 |     0.001 |
+|       pre_r                 |     0.001 |
+|   gen_stages[8].stage_inst  |     0.012 |
+|     gen_stage.cmult         |     0.007 |
+|     gen_stage.comm          |     0.002 |
+|   gen_stages[9].stage_inst  |     0.009 |
+|     gen_stage.cmult         |     0.006 |
++-----------------------------+-----------+
+
+

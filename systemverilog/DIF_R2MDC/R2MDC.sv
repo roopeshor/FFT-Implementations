@@ -2,7 +2,7 @@
 
 module R2MDC #(
     //! number of stages (used to compute size of buffer)    
-    parameter int STAGES = 4,
+    parameter int STAGES = 3,
     //! width of data
     parameter int DW = 16,
     //! position of decimal point from right

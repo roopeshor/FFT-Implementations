@@ -3,7 +3,7 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="R2MDC_tb_func_impl.wdb" id="1">
+      <db_ref path="R2MDC_tb_behav.wdb" id="1">
          <top_modules>
             <top_module name="R2MDC_tb" />
             <top_module name="glbl" />
@@ -12,18 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="69.332 ns"></ZoomEndTime>
-      <Cursor1Time time="135.000 ns"></Cursor1Time>
+      <ZoomEndTime time="140.001 ns"></ZoomEndTime>
+      <Cursor1Time time="140.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="144"></NameColumnWidth>
-      <ValueColumnWidth column_width="75"></ValueColumnWidth>
+      <NameColumnWidth column_width="153"></NameColumnWidth>
+      <ValueColumnWidth column_width="87"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="10" />
-   <wave_markers>
-      <marker label="" time="125000" />
-      <marker label="" time="105000" />
-   </wave_markers>
    <wvobject type="logic" fp_name="/R2MDC_tb/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
